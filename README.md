@@ -1,0 +1,2 @@
+# cpprand
+C++ random utility
