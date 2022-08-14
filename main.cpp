@@ -57,6 +57,7 @@ void lobby() {
          break;
       default:
          std::cout << "Incorrect input" << std::endl;
+         exitt = true; // prevents looping from broken std::cin
          break;
    }
 }
