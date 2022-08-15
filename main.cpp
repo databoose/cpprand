@@ -11,6 +11,16 @@ bool exitt = false;
    Tested, true
 */
 
+void cint(int* x) {
+   std::cin >> *x;
+   std::cout << "\n";
+}
+
+void list_shuffle() {
+   std::cout << "Type the list of items, seperated by commas" << std::endl;
+   std::cout << "Example : Apple,Bannana,Orange" << std::endl;
+}
+
 void lobby() {
    int input;
    
@@ -18,10 +28,11 @@ void lobby() {
    std::cout << "1 : Coinflip" << std::endl;
    std::cout << "2 : Range Randomization" << std::endl;
    std::cout << "3 : Password Generator" << std::endl;
-   std::cout << "4 : Exit Program" << std::endl;
+   std::cout << "4 : List Shuffler" << std::endl;
+   std::cout << "5 : Exit Program" << std::endl;
    std::cout << "\n";
 
-   std::cin >> input;
+   cint(&input);
    switch (input) {
       case 1:
          std::cout << "Result : "  << rand()%2+1 << std::endl;
@@ -29,7 +40,7 @@ void lobby() {
       case 2: {
          int max;
          std::cout << "Max number : ";
-         std::cin >> max;
+         cint(&max);
          std::cout << "\n";
          std::cout << "Result : " << rand()%max + 1;
          std::cout << "\n";
@@ -38,7 +49,7 @@ void lobby() {
       case 3: { // explicit isolated block
          int n;
          std::cout << "Enter length of password : ";
-         std::cin >> n;
+         cint(&n);
          const int MAX = 77;
          char ctable [MAX] = {
             'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 
@@ -53,6 +64,9 @@ void lobby() {
          break;
       }
       case 4:
+         list_shuffle();
+         break;
+      case 5:
          exitt = true;
          break;
       default:
