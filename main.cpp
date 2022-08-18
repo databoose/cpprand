@@ -2,7 +2,9 @@
 #include <iostream>
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
-
+#include <string>       
+#include <string.h>
+#include <vector>
 bool exitt = false;
 
 /*
@@ -11,14 +13,28 @@ bool exitt = false;
    Tested, true
 */
 
-void cint(int* x) {
+template<typename T>
+void cint(T* x) {
    std::cin >> *x;
    std::cout << "\n";
 }
 
 void list_shuffle() {
+   std::string list_input;
    std::cout << "Type the list of items, seperated by commas" << std::endl;
    std::cout << "Example : Apple,Bannana,Orange" << std::endl;
+   cint(&list_input);
+   int len = list_input.length();
+   unsigned int arrsize;
+   for (int i=0; i < len; i++) {
+      if (list_input[i] == ',') {
+         arrsize++;
+      }
+      if (list_input[i] != ',') {
+
+      }
+   }
+   std::cout << arrsize << std::endl;
 }
 
 void lobby() {
