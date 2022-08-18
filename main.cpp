@@ -15,6 +15,7 @@ bool exitt = false;
 
 template<typename T>
 void cint(T* x) {
+   std::cout << ">";
    std::cin >> *x;
    std::cout << "\n";
 }
