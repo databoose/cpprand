@@ -14,28 +14,49 @@ bool exitt = false;
 */
 
 template<typename T>
-void cint(T* x) {
+void cint(T* x) { // we can pass anything into here
    std::cout << ">";
    std::cin >> *x;
    std::cout << "\n";
 }
 
 void list_shuffle() {
+   struct Info {
+      bool end = false;
+      unsigned int strcount = 0;
+   };
+   struct Info info;
+
    std::string list_input;
    std::cout << "Type the list of items, seperated by commas" << std::endl;
    std::cout << "Example : Apple,Bannana,Orange" << std::endl;
+   std::cout << "\n";
    cint(&list_input);
-   int len = list_input.length();
-   unsigned int arrsize;
-   for (int i=0; i < len; i++) {
+   for (int i=0; i < list_input.length(); i++) { // figure out how many strings we need first
       if (list_input[i] == ',') {
-         arrsize++;
-      }
-      if (list_input[i] != ',') {
-
+         info.strcount++;
       }
    }
-   std::cout << arrsize << std::endl;
+   std::string elearry[info.strcount + 1];
+   unsigned int index = 0;
+   while (info.end == false) {
+      for (int i=0; i < list_input.length(); i++) { // fill in strings
+         if (index == info.strcount || index < info.strcount) {
+            info.end = true;
+         }
+         if (list_input[i] == ',') {
+            elearry[index].push_back('\0');
+            index++;
+         }
+         if (list_input[i] != ',') {
+            elearry[index].push_back(list_input[i]);
+            std::cout << "appending char to " << index << std::endl;
+         }
+      }
+   }
+   std::cout << "elearry[0] = " << elearry[0] << std::endl;
+   std::cout << "elerry[1] = " << elearry[1] << std::endl;
+   std::cout << "elerry[2] = " << elearry[2] << std::endl;
 }
 
 void lobby() {
@@ -68,7 +89,7 @@ void lobby() {
          std::cout << "Enter length of password : ";
          cint(&n);
          const int MAX = 77;
-         char ctable [MAX] = {
+         const char ctable [MAX] = {
             'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 
             'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','O','R','S','T','U','V','W','X','Y','Z',
             '!','@','#','$','%','^','&','*','(',')','-','_','+','=',';',':','1','2','3','4','5','6','7','8','9'
@@ -115,9 +136,5 @@ int main() {
    while (exitt == false) {
       lobby();
    }
-   
-   //int random = rand() % 10 + 1; // between 1 and 10, +1 for starting from zero
-   //std::cout << random << std::endl;
-   
    return 0;
 }
