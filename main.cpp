@@ -7,6 +7,7 @@
 #include <vector>
 bool exitt = false;
 
+using std::endl;
 /*
    Note: If random numbers are generated with rand() without first calling srand(), your program will create the same sequence of numbers each time it runs.
 
@@ -32,15 +33,16 @@ void list_shuffle() {
    std::cout << "Example : Apple,Bannana,Orange" << std::endl;
    std::cout << "\n";
    cint(&list_input);
-   for (int i=0; i < list_input.length(); i++) { // figure out how many strings we need first
+   int len = list_input.length();
+   for (int i=0; i < len; i++) { // figure out how many strings we need first
       if (list_input[i] == ',') {
          info.strcount++;
       }
    }
    std::string elearry[info.strcount + 1];
    unsigned int index = 0;
-   while (info.end == false) {
-      for (int i=0; i < list_input.length(); i++) { // fill in strings
+   while (!info.end) {
+      for (int i=0; i < len; i++) { // fill in strings
          if (index == info.strcount || index < info.strcount) {
             info.end = true;
          }
@@ -54,9 +56,11 @@ void list_shuffle() {
          }
       }
    }
-   std::cout << "elearry[0] = " << elearry[0] << std::endl;
-   std::cout << "elerry[1] = " << elearry[1] << std::endl;
-   std::cout << "elerry[2] = " << elearry[2] << std::endl;
+   /*
+      std::cout << "elearry[0] = " << elearry[0] << endl;
+      std::cout << "elerry[1] = " << elearry[1] << endl;
+      std::cout << "elerry[2] = " << elearry[2] << endl;
+   */
 }
 
 void lobby() {
