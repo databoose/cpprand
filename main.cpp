@@ -52,15 +52,9 @@ void list_shuffle() {
          }
          if (list_input[i] != ',') {
             elearry[index].push_back(list_input[i]);
-            std::cout << "appending char to " << index << std::endl;
          }
       }
    }
-   /*
-      std::cout << "elearry[0] = " << elearry[0] << endl;
-      std::cout << "elerry[1] = " << elearry[1] << endl;
-      std::cout << "elerry[2] = " << elearry[2] << endl;
-   */
 }
 
 void lobby() {
