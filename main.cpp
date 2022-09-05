@@ -5,9 +5,10 @@
 #include <string>       
 #include <string.h>
 #include <vector>
-bool exitt = false;
 
-using std::endl;
+#include<bits/stdc++.h>
+
+bool exitt = false;
 /*
    Note: If random numbers are generated with rand() without first calling srand(), your program will create the same sequence of numbers each time it runs.
 
@@ -22,11 +23,8 @@ void cint(T* x) { // we can pass anything into here
 }
 
 void list_shuffle() {
-   struct Info {
-      bool end = false;
-      unsigned int strcount = 0;
-   };
-   struct Info info;
+   bool end = false;
+   unsigned int strcount = 0;
 
    std::string list_input;
    std::cout << "Type the list of items, seperated by commas" << std::endl;
@@ -36,15 +34,17 @@ void list_shuffle() {
    int len = list_input.length();
    for (int i=0; i < len; i++) { // figure out how many strings we need first
       if (list_input[i] == ',') {
-         info.strcount++;
+         strcount++;
       }
    }
-   std::string elearry[info.strcount + 1];
+   strcount++; // amount of elements is +1 above amount of seperators (aka commas)
+   std::string elearry[strcount];
    unsigned int index = 0;
-   while (!info.end) {
+   while (end) {
       for (int i=0; i < len; i++) { // fill in strings
-         if (index == info.strcount || index < info.strcount) {
-            info.end = true;
+         if (index == strcount || index < strcount) {
+            end = true;
+            break;
          }
          if (list_input[i] == ',') {
             elearry[index].push_back('\0');
@@ -54,7 +54,22 @@ void list_shuffle() {
             elearry[index].push_back(list_input[i]);
          }
       }
+
    }
+   std::vector<int> RandPosBank;
+   for (int i=0; i < strcount; i++) {
+      int pos = rand()%strcount;
+      if (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {// if value is found
+         // not enough rounds, make a function for this that does about ~50 checks
+         pos = rand()%strcount;
+         if (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {
+            pos = rand()%strcount;
+         }
+      }
+      RandPosBank.push_back(pos);
+   }
+   for(int i=0; i < RandPosBank.size(); i++)
+   std::cout << RandPosBank.at(i) << ' ';
 }
 
 void lobby() {
