@@ -24,7 +24,8 @@ void cint(T* x) { // we can pass anything into here
 
 void list_shuffle() {
    bool end = false;
-   unsigned int strcount = 0;
+   int strcount = 0;
+   int index = 0;
 
    std::string list_input;
    std::cout << "Type the list of items, seperated by commas" << std::endl;
@@ -39,7 +40,6 @@ void list_shuffle() {
    }
    strcount++; // amount of elements is +1 above amount of seperators (aka commas)
    std::string elearry[strcount];
-   unsigned int index = 0;
    while (end) {
       for (int i=0; i < len; i++) { // fill in strings
          if (index == strcount || index < strcount) {
@@ -68,7 +68,7 @@ void list_shuffle() {
       }
       RandPosBank.push_back(pos);
    }
-   for(int i=0; i < RandPosBank.size(); i++)
+   for(long unsigned int i=0; i < RandPosBank.size(); i++)
    std::cout << RandPosBank.at(i) << ' ';
 }
 
