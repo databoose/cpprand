@@ -54,17 +54,12 @@ void list_shuffle() {
             elearry[index].push_back(list_input[i]);
          }
       }
-
    }
    std::vector<int> RandPosBank;
    for (int i=0; i < strcount; i++) {
       int pos = rand()%strcount;
-      if (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {// if value is found
-         // not enough rounds, make a function for this that does about ~50 checks
+      while (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {
          pos = rand()%strcount;
-         if (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {
-            pos = rand()%strcount;
-         }
       }
       RandPosBank.push_back(pos);
    }
