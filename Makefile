@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS  = -o 2 -Wall
+CFLAGS  = -o 2 -Wall -fstack-protector -Wunreachable-code
 # compiler flags:
 #  -o 2   - this flag optimizes the binary
 #  -g     - this flag adds debugging information to the executable file
