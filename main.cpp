@@ -22,51 +22,6 @@ void cint(T* x) { // we can pass anything into here
    std::cout << "\n";
 }
 
-void list_shuffle() {
-   bool end = false;
-   int strcount = 0;
-   int index = 0;
-
-   std::string list_input;
-   std::cout << "Type the list of items, seperated by commas" << std::endl;
-   std::cout << "Example : Apple,Bannana,Orange" << std::endl;
-   std::cout << "\n";
-   cint(&list_input);
-   int len = list_input.length();
-   for (int i=0; i < len; i++) { // figure out how many strings we need first
-      if (list_input[i] == ',') {
-         strcount++;
-      }
-   }
-   strcount++; // amount of elements is +1 above amount of seperators (aka commas)
-   std::string elearry[strcount];
-   while (end) {
-      for (int i=0; i < len; i++) { // fill in strings
-         if (index == strcount || index < strcount) {
-            end = true;
-            break;
-         }
-         if (list_input[i] == ',') {
-            elearry[index].push_back('\0');
-            index++;
-         }
-         if (list_input[i] != ',') {
-            elearry[index].push_back(list_input[i]);
-         }
-      }
-   }
-   std::vector<int> RandPosBank;
-   for (int i=0; i < strcount; i++) {
-      int pos = rand()%strcount;
-      while (std::find(RandPosBank.begin(), RandPosBank.end(), pos) != RandPosBank.end()) {
-         pos = rand()%strcount;
-      }
-      RandPosBank.push_back(pos);
-   }
-   for(long unsigned int i=0; i < RandPosBank.size(); i++)
-   std::cout << RandPosBank.at(i) << ' ';
-}
-
 void lobby() {
    int input;
    
@@ -74,8 +29,7 @@ void lobby() {
    std::cout << "1 : Coinflip" << std::endl;
    std::cout << "2 : Range Randomization" << std::endl;
    std::cout << "3 : Password Generator" << std::endl;
-   std::cout << "4 : List Shuffler" << std::endl;
-   std::cout << "5 : Exit Program" << std::endl;
+   std::cout << "4 : Exit Program" << std::endl;
    std::cout << "\n";
 
    cint(&input);
@@ -110,9 +64,6 @@ void lobby() {
          break;
       }
       case 4:
-         list_shuffle();
-         break;
-      case 5:
          exitt = true;
          break;
       default:
