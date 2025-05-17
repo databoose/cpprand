@@ -119,7 +119,7 @@ std::any lobby(std::mt19937_64& rng) {
 
             if (roll_result < percentage) {
                 std::cout << std::fixed << std::setprecision(2);
-                 return roll_result;
+
                 std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
                 std::cout << "Rolled " << roll_result << " - Success! (" << percentage << "% chance)" << std::endl;
                 std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
