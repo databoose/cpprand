@@ -140,20 +140,19 @@ std::any lobby(std::mt19937_64& rng) {
         }
         case 5:
             std::cout << "Exiting program.\n";
-            return "end";
+            return 0;
         default:
             std::cerr << "Error: Incorrect menu choice.\n";
             break;
     }
-    return "end";
 }
 
 int main() {
     kernel_seed = get_seed_from_urandom();
     std::mt19937_64 random_engine(kernel_seed);
     std::any result;
-    bool running = true;
 
+    bool running = true;
     while (running) {
         result = lobby(random_engine);
 
@@ -169,20 +168,22 @@ int main() {
             if (range_result == 0) {
                 running = false;
             } else {
+                std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
                 std::cout << "Random number result: " << range_result << std::endl;
+                std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
             }
         }
         else if (result.type() == typeid(std::string)) {
             std::string str_result = std::any_cast<std::string>(result);
-            if (str_result != "escape") {
-                std::cout << "Generated password: " << str_result << std::endl;
-            }
+            std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
+            std::cout << "Generated password: " << str_result << std::endl;
+            std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
         }
         else if (result.type() == typeid(double)) {
             double chance_result = std::any_cast<double>(result);
         }
 
-        if (result.has_value() && (result.type() != typeid(std::string) || std::any_cast<std::string>(result) != "escape")) {
+        if (result.has_value() && result.type() != typeid(int)) {
             std::cout << "\nPress Enter to continue...";
             std::cin.get();
         }
