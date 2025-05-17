@@ -28,15 +28,12 @@ unsigned long long get_seed_from_urandom() {
 template<typename T>
 bool validated_input(T& value) {
     std::cout << "> ";
-    std::cin >> value;
-    if (std::cin.fail()) {
-        std::cerr << "\nError: Invalid input type.\n";
+    if (!(std::cin >> value)) {
+        std::cerr << "\nError: Invalid input type., please enter an integer. \n";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return false;
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "\n";
     return true;
 }
 
@@ -57,7 +54,7 @@ std::any lobby(std::mt19937_64& rng) {
     std::cout << "--------------------------\n";
 
     if (!validated_input(choice)) {
-        return true;
+        return std::any();
     }
 
     switch (choice) {
