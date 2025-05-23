@@ -137,10 +137,10 @@ std::any lobby(std::mt19937_64& rng) {
         }
         case 5:
             std::cout << "Exiting program.\n";
-            return 0;
+            return std::string("exit");
         default:
             std::cerr << "Error: Incorrect menu choice.\n";
-            break;
+            return std::string("loop-back-to-lobby");
     }
 }
 
@@ -153,17 +153,26 @@ int main() {
     while (running) {
         result = lobby(random_engine);
 
-        if (!result.has_value()) {
-            std::cout << "Invalid input detected. Please try again." << std::endl;
+        if (result.type() == typeid(std::string)) {
+            std::string str_result = std::any_cast<std::string>(result);
+            if (str_result == "loop-back-to-lobby") {
+                continue;
+            }
+            else if (str_result == "exit") {
+                running = false;
+                std::cout << "Exiting..." << std::endl;
+            }
         }
+
         else if (result.type() == typeid(bool)) {
             bool coin_result = std::any_cast<bool>(result);
             std::cout << "Coinflip result: " << (coin_result ? "2" : "1") << std::endl;
         }
         else if (result.type() == typeid(int)) {
             int range_result = std::any_cast<int>(result);
-            if (range_result == 0) {
+            if (range_result == 0) { // catch NULL returns from lobby()
                 running = false;
+                std::cout << "Exiting..." << std::endl;
             } else {
                 std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
                 std::cout << "Random number result: " << range_result << std::endl;
